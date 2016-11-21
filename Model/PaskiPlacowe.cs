@@ -14,11 +14,19 @@ namespace PaskiPlacowe.Model
     
     public partial class PaskiPlacowe
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public PaskiPlacowe()
+        {
+            this.PaskiPlacowe_POZ = new HashSet<PaskiPlacowe_POZ>();
+        }
+    
         public long ID_PASKA { get; set; }
         public string NAZWA { get; set; }
         public long ID_UZYTKOWNIKA { get; set; }
         public byte[] PLIK { get; set; }
     
         public virtual Uzytkownicy Uzytkownicy { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PaskiPlacowe_POZ> PaskiPlacowe_POZ { get; set; }
     }
 }

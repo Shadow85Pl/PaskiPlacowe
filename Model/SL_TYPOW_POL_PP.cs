@@ -14,9 +14,18 @@ namespace PaskiPlacowe.Model
     
     public partial class SL_TYPOW_POL_PP
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public SL_TYPOW_POL_PP()
+        {
+            this.PaskiPlacowe_POZ = new HashSet<PaskiPlacowe_POZ>();
+        }
+    
         public long ID_TYPU_POLA { get; set; }
         public string KOD { get; set; }
         public string NAZWA { get; set; }
         public bool UNIKALNY { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PaskiPlacowe_POZ> PaskiPlacowe_POZ { get; set; }
     }
 }
