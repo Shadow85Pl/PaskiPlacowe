@@ -6,7 +6,6 @@
              xmlns:local="clr-namespace:PaskiPlacowe.View"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-<<<<<<< HEAD
     <StackPanel>
         <StackPanel>
             <TextBlock Text="Login"></TextBlock>
@@ -21,14 +20,4 @@
             <Button Content="Anuluj"></Button>
         </StackPanel>
     </StackPanel>
-=======
-    <WrapPanel>
-        <TextBlock Text="Login"></TextBlock>
-        <TextBox x:Name="Login"></TextBox>
-        <TextBlock Text="Hasło"></TextBlock>
-        <PasswordBox x:Name="Hasło"></PasswordBox>
-        <Button Content="Zaloguj"></Button>
-        <Button Content="Anuluj"></Button>
-    </WrapPanel>
->>>>>>> d103759e3010e5a5a61f14ab27e4005a6d5acddc
 </UserControl>
