@@ -1,0 +1,40 @@
+﻿<Controls:MetroWindow x:Class="PaskiPlacowe.View.MainV"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PaskiPlacowe"
+        xmlns:VM="clr-namespace:PaskiPlacowe.ViewModel"
+        xmlns:V="clr-namespace:PaskiPlacowe.View"
+        mc:Ignorable="d"
+        Title="Paski Płacowe" WindowState="Maximized">
+    <Controls:MetroWindow.DataContext>
+        <VM:MainVM/>
+    </Controls:MetroWindow.DataContext>
+    <Controls:MetroWindow.Resources>
+        <DataTemplate DataType="{x:Type VM:LoginVM}">
+            <V:LoginV/>
+        </DataTemplate>
+    </Controls:MetroWindow.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ToolBarTray Grid.Row="0" x:Name="ToolPanel">
+            <ToolBar>
+                <Button Content="test"/>
+            </ToolBar>
+            <ToolBar>
+                <Button Content="test2"/>
+                <Button Content="test3"/>
+            </ToolBar>
+        </ToolBarTray>
+        <ContentControl Content="{Binding CurrentPageViewModel}" Grid.Row="1" x:Name="WindowContent"/>
+        <StatusBar Grid.Row="2" x:Name="Status">
+            statusbar
+        </StatusBar>
+    </Grid>
+</Controls:MetroWindow>
