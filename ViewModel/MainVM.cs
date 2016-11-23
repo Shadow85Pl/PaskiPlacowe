@@ -21,11 +21,9 @@ namespace PaskiPlacowe.ViewModel
 
         private void CheckDB()
         {
-            string AppDataFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), Consts.AppNameShort);
-            if (!Directory.Exists(AppDataFolder))
-                Directory.CreateDirectory(AppDataFolder);
-            string DBPath = Path.Combine(AppDataFolder,Consts.DBName);
-            if (!File.Exists(DBPath))
+            if (!Directory.Exists(Consts.AppDataFolder))
+                Directory.CreateDirectory(Consts.AppDataFolder);
+            if (!File.Exists(Consts.DBPath))
             {
                 // TODO: Add create db script
             }

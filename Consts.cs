@@ -12,5 +12,7 @@ namespace PaskiPlacowe
         public const string AppNameShort = "PaskiPlacowe";
         public const string AppNameLong = "Paski Płacowe (Salary Slip)";
         public readonly static string DBName= String.Format("{0}.db3",AppNameShort);
+        public readonly static string  AppDataFolder=Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), Consts.AppNameShort);
+        public readonly static string DBPath = Path.Combine(AppDataFolder, Consts.DBName);
     }
 }
