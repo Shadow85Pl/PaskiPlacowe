@@ -1,6 +1,7 @@
 ﻿using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
+using System.Data.SQLite;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -25,7 +26,35 @@ namespace PaskiPlacowe.ViewModel
                 Directory.CreateDirectory(Consts.AppDataFolder);
             if (!File.Exists(Consts.DBPath))
             {
-                // TODO: Add create db script
+                CreateDB(Consts.DBPath);
+            }
+        }
+
+        private void CreateDB(string dBPath)
+        {
+            SQLiteConnectionStringBuilder ConStr = new SQLiteConnectionStringBuilder();
+            ConStr.DataSource = dBPath;
+            try
+            {
+                using (SQLiteConnection Con = new SQLiteConnection(ConStr.ConnectionString))
+                {
+                    Con.Open();
+                    try
+                    {
+                        using (SQLiteCommand Com = Con.CreateCommand())
+                        {
+                            Com.CommandText = PaskiPlacowe.Properties.Resources.SalarySlip;
+                            Com.ExecuteNonQuery();
+                        }
+                    }
+                    finally
+                    {
+                        Con.Close();
+                    }
+                }
+            }finally
+            {
+                GC.Collect();
             }
         }
 
