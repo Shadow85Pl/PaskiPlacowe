@@ -1,4 +1,5 @@
-﻿using Prism.Commands;
+﻿using PaskiPlacowe.BaseClasses;
+using Prism.Commands;
 using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
@@ -10,11 +11,12 @@ using System.Windows.Input;
 
 namespace PaskiPlacowe.ViewModel
 {
-    internal class LoginVM: BindableBase
+    internal class LoginVM: BaseViewModelClass
     {
         #region private Variables
         private string _Login;
         private SecureString _Password;
+        private string _LoginERRMsg;
         #endregion
         #region Commands
         private DelegateCommand _LogInUser;
@@ -39,8 +41,18 @@ namespace PaskiPlacowe.ViewModel
 
         private void LogInUserFunc()
         {
-            // TODO: Login function
-            throw new NotImplementedException();
+            try
+            {
+
+                if (String.IsNullOrWhiteSpace(this.Login))
+                  throw new Exception(Localization.Strings.MSG_ERR_LOGIN_FAILED);
+
+            }
+            catch (Exception Ex)
+            {
+                Password = null;
+                _LoginERRMsg = Ex.Message;
+            }
         }
         #region Properties
         public string Login
@@ -54,6 +66,17 @@ namespace PaskiPlacowe.ViewModel
         {
             get { return _Password; }
             set { SetProperty(ref _Password, value); }
+        }
+        public string LoginErrMSG
+        {
+            get
+            {
+                return _LoginERRMsg;
+            }
+            set
+            {
+                SetProperty(ref _LoginERRMsg, value);
+            }
         }
         public ICommand LogInUser
         {

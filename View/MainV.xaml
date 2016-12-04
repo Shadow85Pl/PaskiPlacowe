@@ -8,7 +8,8 @@
         xmlns:VM="clr-namespace:PaskiPlacowe.ViewModel"
         xmlns:V="clr-namespace:PaskiPlacowe.View"
         mc:Ignorable="d"
-        Title="Paski Płacowe" WindowState="Maximized">
+        xmlns:main ="clr-namespace:PaskiPlacowe"
+        Title="{x:Static main:Consts.AppNameLong}" WindowState="Maximized">
     <Controls:MetroWindow.DataContext>
         <VM:MainVM/>
     </Controls:MetroWindow.DataContext>
@@ -16,6 +17,7 @@
         <DataTemplate DataType="{x:Type VM:LoginVM}">
             <V:LoginV/>
         </DataTemplate>
+        <BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
     </Controls:MetroWindow.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -23,7 +25,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <ToolBarTray Grid.Row="0" x:Name="ToolPanel">
+        <ToolBarTray Grid.Row="0" x:Name="ToolPanel" Visibility="{Binding Path=LData.IsLoggedIn, Converter={StaticResource booleanToVisibilityConverter}}">
             <ToolBar>
                 <Button Content="test"/>
             </ToolBar>
@@ -33,7 +35,7 @@
             </ToolBar>
         </ToolBarTray>
         <ContentControl Content="{Binding CurrentPageViewModel}" Grid.Row="1" x:Name="WindowContent"/>
-        <StatusBar Grid.Row="2" x:Name="Status">
+        <StatusBar Grid.Row="2" x:Name="Status" Visibility="{Binding Path=LData.IsLoggedIn, Converter={StaticResource booleanToVisibilityConverter}}">
             statusbar
         </StatusBar>
     </Grid>

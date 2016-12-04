@@ -4,21 +4,24 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PaskiPlacowe.View"
+             xmlns:main ="clr-namespace:PaskiPlacowe"
+             xmlns:localization="clr-namespace:PaskiPlacowe.Localization"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel VerticalAlignment="Center" Margin="10">
-        <TextBlock Text="Paski Płacowe"></TextBlock>
+        <TextBlock Text="{x:Static main:Consts.AppNameLong}"></TextBlock>
+        <TextBlock Text="{Binding LoginErrMSG}"></TextBlock>
         <StackPanel>
-            <TextBlock Text="Login"></TextBlock>
+            <TextBlock Text="{x:Static localization:Strings.LABEL_LOGIN}"></TextBlock>
             <TextBox x:Name="Login" Text="{Binding Login, Mode=TwoWay}"></TextBox>
         </StackPanel>
         <StackPanel>
-            <TextBlock Text="Hasło"></TextBlock>
+            <TextBlock Text="{x:Static localization:Strings.LABEL_PASSWORD}"></TextBlock>
             <PasswordBox x:Name="Pass" PasswordChanged="Pass_PasswordChanged"></PasswordBox>
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Content="Zaloguj" IsDefault="True" Command="{Binding LogInUser}"></Button>
-            <Button Content="Anuluj" Command="{Binding Cancel}" IsCancel="True"></Button>
+            <Button Content="{x:Static localization:Strings.BTN_LOG_IN}" IsDefault="True" Command="{Binding LogInUser}"></Button>
+            <Button Content="{x:Static localization:Strings.CANCEL}" Command="{Binding Cancel}" IsCancel="True"></Button>
         </StackPanel>
     </StackPanel>
 </UserControl>

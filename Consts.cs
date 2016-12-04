@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PaskiPlacowe
 {
-    class Consts
+    public class Consts
     {
         public const string AppNameShort = "PaskiPlacowe";
         public const string AppNameLong = "Paski Płacowe (Salary Slip)";
