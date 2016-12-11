@@ -20,6 +20,7 @@
             <PasswordBox x:Name="Pass" PasswordChanged="Pass_PasswordChanged"></PasswordBox>
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="{x:Static localization:Strings.BTN_ADD_NEW_USER}" IsDefault="True" Command="{Binding AddNewUser}"></Button>
             <Button Content="{x:Static localization:Strings.BTN_LOG_IN}" IsDefault="True" Command="{Binding LogInUser}"></Button>
             <Button Content="{x:Static localization:Strings.CANCEL}" Command="{Binding Cancel}" IsCancel="True"></Button>
         </StackPanel>

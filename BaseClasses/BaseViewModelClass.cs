@@ -2,6 +2,7 @@
 using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.EntityClient;
 using System.Data.SQLite;
 using System.IO;
 using System.Linq;
@@ -27,11 +28,19 @@ namespace PaskiPlacowe.BaseClasses
                 CreateDB(Consts.DBPath);
             }
         }
-        private SQLiteConnectionStringBuilder CreateConnectionString(string dBPath)
+        private EntityConnectionStringBuilder CreateConnectionString(string dBPath)
         {
-            return new SQLiteConnectionStringBuilder()
+            SQLiteConnectionStringBuilder Con = new SQLiteConnectionStringBuilder()
             {
-                DataSource= dBPath
+                
+                DataSource = dBPath
+            };
+            return new EntityConnectionStringBuilder()
+            {
+                Metadata= "res://*/Model.SalarySlip.csdl|res://*/Model.SalarySlip.ssdl|res://*/Model.SalarySlip.msl",
+                ProviderConnectionString = Con.ConnectionString,
+                Provider= "System.Data.SQLite.EF6"
+
             };
         }
 

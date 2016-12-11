@@ -26,6 +26,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -130,15 +131,20 @@
     </Compile>
     <Compile Include="BaseClasses\BaseViewModelClass.cs" />
     <Compile Include="Consts.cs" />
+    <Compile Include="Localization\Messages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Messages.resx</DependentUpon>
+    </Compile>
     <Compile Include="Localization\Strings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
-    <Compile Include="Localization\Strings.pl-PL.Designer.cs">
+    <Compile Include="Localization\Strings.pl.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Strings.pl-PL.resx</DependentUpon>
+      <DependentUpon>Strings.pl.resx</DependentUpon>
     </Compile>
     <Compile Include="LoginData.cs" />
     <Compile Include="Model\Entities_Extension.cs" />
@@ -169,6 +175,7 @@
     <Compile Include="Model\Uzytkownicy.cs">
       <DependentUpon>SalarySlip.tt</DependentUpon>
     </Compile>
+    <Compile Include="Utils.cs" />
     <Compile Include="ViewModel\LoginVM.cs" />
     <Compile Include="ViewModel\MainVM.cs" />
     <Compile Include="View\LoginV.xaml.cs">
@@ -193,9 +200,14 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Localization\Strings.pl-PL.resx">
+    <EmbeddedResource Include="Localization\Messages.pl.resx" />
+    <EmbeddedResource Include="Localization\Messages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Localization\Strings.pl.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Strings.pl-PL.Designer.cs</LastGenOutput>
+      <LastGenOutput>Strings.pl.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Localization\Strings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

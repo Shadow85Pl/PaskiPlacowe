@@ -117,28 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BTN_ADD_NEW_USER" xml:space="preserve">
-    <value>Add new user</value>
+  <data name="MSG_ERR_LOGIN_FAILED" xml:space="preserve">
+    <value>Login failed</value>
   </data>
-  <data name="BTN_LOG_IN" xml:space="preserve">
-    <value>Log in</value>
+  <data name="MSG_LOGIN_REQUIRED" xml:space="preserve">
+    <value>Login is required</value>
   </data>
-  <data name="CANCEL" xml:space="preserve">
-    <value>Cancel</value>
+  <data name="MSG_PASSWORD_REQUIRED" xml:space="preserve">
+    <value>Password is required</value>
   </data>
-  <data name="LABEL_LOGIN" xml:space="preserve">
-    <value>Login</value>
-  </data>
-  <data name="LABEL_PASSWORD" xml:space="preserve">
-    <value>Password</value>
-  </data>
-  <data name="NO" xml:space="preserve">
-    <value>No</value>
-  </data>
-  <data name="OK" xml:space="preserve">
-    <value>OK</value>
-  </data>
-  <data name="YES" xml:space="preserve">
-    <value>Yes</value>
+  <data name="MSG_USER_ALREADY_EXISTS" xml:space="preserve">
+    <value>User already exists</value>
   </data>
 </root>

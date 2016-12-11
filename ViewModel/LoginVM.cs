@@ -3,11 +3,14 @@ using Prism.Commands;
 using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using PaskiPlacowe;
+using System.Security.Cryptography;
 
 namespace PaskiPlacowe.ViewModel
 {
@@ -21,11 +24,43 @@ namespace PaskiPlacowe.ViewModel
         #region Commands
         private DelegateCommand _LogInUser;
         private DelegateCommand _Cancel;
+        private DelegateCommand _AddNewUser;
         #endregion
         public LoginVM()
         {
             _LogInUser = new DelegateCommand(LogInUserFunc, CanLogIn);
             _Cancel = new DelegateCommand(CancelFunc);
+            _AddNewUser = new DelegateCommand(AddNewUserFunc);
+        }
+
+        private void AddNewUserFunc()
+        {
+            try
+            {
+                if(this.Password!=null)
+                  this.Password.MakeReadOnly();
+                if (String.IsNullOrWhiteSpace(this.Login))
+                    throw new Exception(Localization.Messages.MSG_LOGIN_REQUIRED);
+                if (String.IsNullOrWhiteSpace(this.Password.ConvertToUnsecureString()))
+                    throw new Exception(Localization.Messages.MSG_PASSWORD_REQUIRED);
+                if (DB.Uzytkownicy.Where(a => a.LOGIN.Equals(this.Login)).Any())
+                    throw new Exception(Localization.Messages.MSG_USER_ALREADY_EXISTS);
+                using (var h = new SHA512Managed())
+                {
+                    DB.Uzytkownicy.Add(new Model.Uzytkownicy()
+                    {
+                        NAZWA= this.Login,
+                        LOGIN = this.Login,
+                        HASLO = this.Password.Process(h.ComputeHash)
+                    });
+                    DB.SaveChanges();
+                }
+            }
+            catch (Exception Ex)
+            {
+                Password = null;
+                LoginErrMSG = Ex.Message;
+            }
         }
 
         private void CancelFunc()
@@ -43,15 +78,16 @@ namespace PaskiPlacowe.ViewModel
         {
             try
             {
-
+                if (this.Password != null)
+                    this.Password.MakeReadOnly();
                 if (String.IsNullOrWhiteSpace(this.Login))
-                  throw new Exception(Localization.Strings.MSG_ERR_LOGIN_FAILED);
+                  throw new Exception(Localization.Messages.MSG_ERR_LOGIN_FAILED);
 
             }
             catch (Exception Ex)
             {
                 Password = null;
-                _LoginERRMsg = Ex.Message;
+                LoginErrMSG = Ex.Message;
             }
         }
         #region Properties
@@ -85,6 +121,10 @@ namespace PaskiPlacowe.ViewModel
         public ICommand Cancel
         {
             get { return _Cancel; }
+        }
+        public ICommand AddNewUser
+        {
+            get { return _AddNewUser; }
         }
         #endregion
     }

@@ -22,24 +22,24 @@ namespace PaskiPlacowe.Localization {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Strings {
+    internal class Messages {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Strings() {
+        internal Messages() {
         }
         
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
+        internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PaskiPlacowe.Localization.Strings", typeof(Strings).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("PaskiPlacowe.Localization.Messages", typeof(Messages).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,7 +51,7 @@ namespace PaskiPlacowe.Localization {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
+        internal static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,74 +61,38 @@ namespace PaskiPlacowe.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add new user.
+        ///   Looks up a localized string similar to Login failed.
         /// </summary>
-        public static string BTN_ADD_NEW_USER {
+        internal static string MSG_ERR_LOGIN_FAILED {
             get {
-                return ResourceManager.GetString("BTN_ADD_NEW_USER", resourceCulture);
+                return ResourceManager.GetString("MSG_ERR_LOGIN_FAILED", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Log in.
+        ///   Looks up a localized string similar to Login is required.
         /// </summary>
-        public static string BTN_LOG_IN {
+        internal static string MSG_LOGIN_REQUIRED {
             get {
-                return ResourceManager.GetString("BTN_LOG_IN", resourceCulture);
+                return ResourceManager.GetString("MSG_LOGIN_REQUIRED", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cancel.
+        ///   Looks up a localized string similar to Password is required.
         /// </summary>
-        public static string CANCEL {
+        internal static string MSG_PASSWORD_REQUIRED {
             get {
-                return ResourceManager.GetString("CANCEL", resourceCulture);
+                return ResourceManager.GetString("MSG_PASSWORD_REQUIRED", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Login.
+        ///   Looks up a localized string similar to User already exists.
         /// </summary>
-        public static string LABEL_LOGIN {
+        internal static string MSG_USER_ALREADY_EXISTS {
             get {
-                return ResourceManager.GetString("LABEL_LOGIN", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Password.
-        /// </summary>
-        public static string LABEL_PASSWORD {
-            get {
-                return ResourceManager.GetString("LABEL_PASSWORD", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to No.
-        /// </summary>
-        public static string NO {
-            get {
-                return ResourceManager.GetString("NO", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to OK.
-        /// </summary>
-        public static string OK {
-            get {
-                return ResourceManager.GetString("OK", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Yes.
-        /// </summary>
-        public static string YES {
-            get {
-                return ResourceManager.GetString("YES", resourceCulture);
+                return ResourceManager.GetString("MSG_USER_ALREADY_EXISTS", resourceCulture);
             }
         }
     }
