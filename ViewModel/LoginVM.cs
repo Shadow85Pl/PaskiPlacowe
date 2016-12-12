@@ -33,17 +33,21 @@ namespace PaskiPlacowe.ViewModel
             _AddNewUser = new DelegateCommand(AddNewUserFunc);
         }
 
+        private Model.Uzytkownicy LoginBegin(bool AddingUser)
+        {
+            LoginErrMSG = String.Empty;
+            if (this.Password != null)
+                this.Password.MakeReadOnly();
+            if (String.IsNullOrWhiteSpace(this.Login))
+                throw new Exception(AddingUser ? Localization.Messages.MSG_LOGIN_REQUIRED: Localization.Messages.MSG_ERR_LOGIN_FAILED);
+            return DB.Uzytkownicy.Where(a => a.LOGIN == this.Login).SingleOrDefault();
+        }
+
         private void AddNewUserFunc()
         {
             try
             {
-                if(this.Password!=null)
-                  this.Password.MakeReadOnly();
-                if (String.IsNullOrWhiteSpace(this.Login))
-                    throw new Exception(Localization.Messages.MSG_LOGIN_REQUIRED);
-                if (String.IsNullOrWhiteSpace(this.Password.ConvertToUnsecureString()))
-                    throw new Exception(Localization.Messages.MSG_PASSWORD_REQUIRED);
-                if (DB.Uzytkownicy.Where(a => a.LOGIN.Equals(this.Login)).Any())
+                if (LoginBegin(true)!=null)
                     throw new Exception(Localization.Messages.MSG_USER_ALREADY_EXISTS);
                 using (var h = new SHA512Managed())
                 {
@@ -51,14 +55,14 @@ namespace PaskiPlacowe.ViewModel
                     {
                         NAZWA= this.Login,
                         LOGIN = this.Login,
-                        HASLO = this.Password.Process(h.ComputeHash)
+                        HASLO = this.Password!=null&&!this.Password.IsNullOrWhiteSpace()?this.Password.Process(h.ComputeHash):null
                     });
                     DB.SaveChanges();
                 }
+                //TODO: Login user to application
             }
             catch (Exception Ex)
             {
-                Password = null;
                 LoginErrMSG = Ex.Message;
             }
         }
@@ -78,15 +82,22 @@ namespace PaskiPlacowe.ViewModel
         {
             try
             {
-                if (this.Password != null)
-                    this.Password.MakeReadOnly();
-                if (String.IsNullOrWhiteSpace(this.Login))
-                  throw new Exception(Localization.Messages.MSG_ERR_LOGIN_FAILED);
-
+                Model.Uzytkownicy User = LoginBegin(true);
+                if (User==null)
+                    throw new Exception(Localization.Messages.MSG_USER_DONT_EXISTS);
+                using (var h = new SHA512Managed())
+                {
+                    if ((this.Password != null && !this.Password.IsNullOrWhiteSpace() && User.HASLO!=null && User.HASLO.Equals(this.Password.Process(h.ComputeHash))) ||
+                        ((this.Password==null || this.Password.IsNullOrWhiteSpace()) && User.HASLO==null))
+                    {
+                        //TODO: Login user to application
+                    }
+                    else
+                        throw new Exception(Localization.Messages.MSG_USER_CREDENTIALS_INCORECT);
+                }
             }
             catch (Exception Ex)
             {
-                Password = null;
                 LoginErrMSG = Ex.Message;
             }
         }

@@ -48,7 +48,7 @@ namespace PaskiPlacowe.BaseClasses
         {
             try
             {
-                using (SQLiteConnection Con = new SQLiteConnection(CreateConnectionString(dBPath).ConnectionString))
+                using (SQLiteConnection Con = new SQLiteConnection(CreateConnectionString(dBPath).ProviderConnectionString))
                 {
                     Con.Open();
                     try

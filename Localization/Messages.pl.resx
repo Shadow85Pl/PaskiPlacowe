@@ -129,4 +129,10 @@
   <data name="MSG_USER_ALREADY_EXISTS" xml:space="preserve">
     <value>Użytkownik już istnieje</value>
   </data>
+  <data name="MSG_USER_CREDENTIALS_INCORECT" xml:space="preserve">
+    <value>Login lub hasło są błędne.</value>
+  </data>
+  <data name="MSG_USER_DONT_EXISTS" xml:space="preserve">
+    <value>Użytkownik nie istnieje</value>
+  </data>
 </root>

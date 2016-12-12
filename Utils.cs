@@ -26,6 +26,10 @@ namespace PaskiPlacowe
                 Marshal.ZeroFreeGlobalAllocUnicode(unmanagedString);
             }
         }
+        public static bool IsNullOrWhiteSpace(this SecureString securePassword)
+        {
+            return String.IsNullOrWhiteSpace(securePassword.ConvertToUnsecureString());
+        }
         public static T Process<T>(this SecureString src, Func<byte[], T> func)
         {
             IntPtr bstr = IntPtr.Zero;

@@ -95,5 +95,23 @@ namespace PaskiPlacowe.Localization {
                 return ResourceManager.GetString("MSG_USER_ALREADY_EXISTS", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login or password incorect.
+        /// </summary>
+        internal static string MSG_USER_CREDENTIALS_INCORECT {
+            get {
+                return ResourceManager.GetString("MSG_USER_CREDENTIALS_INCORECT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User don&apos;t exists.
+        /// </summary>
+        internal static string MSG_USER_DONT_EXISTS {
+            get {
+                return ResourceManager.GetString("MSG_USER_DONT_EXISTS", resourceCulture);
+            }
+        }
     }
 }

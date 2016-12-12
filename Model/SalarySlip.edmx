@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="SalarySlipModel.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="data source=D:\Projekty\PaskiPlacowe\PaskiPlacowe.db3" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SalarySlipModel.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="data source=D:\Projekty\PaskiPlacowe\PaskiPlacowe\PaskiPlacowe\SalarySlip.db3" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="PaskiPlacowe">
           <Key>
             <PropertyRef Name="ID_PASKA" />
@@ -39,7 +39,7 @@
           <Property Name="ID_UZYTKOWNIKA" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NAZWA" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="LOGIN" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="HASLO" Type="blob" Nullable="false" />
+          <Property Name="HASLO" Type="blob" />
         </EntityType>
         <Association Name="FK_PaskiPlacowe_0_0">
           <End Role="Uzytkownicy" Type="Self.Uzytkownicy" Multiplicity="1" />
@@ -107,8 +107,8 @@
           <Property Name="NAZWA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ID_UZYTKOWNIKA" Type="Int64" Nullable="false" />
           <Property Name="PLIK" Type="Binary" MaxLength="2147483647" FixedLength="false" />
-          <NavigationProperty Name="Uzytkownicy" Relationship="Self.FK_PaskiPlacowe_0_0" FromRole="PaskiPlacowe" ToRole="Uzytkownicy" />
           <NavigationProperty Name="PaskiPlacowe_POZ" Relationship="SalarySlipModel.FK_PaskiPlacowe_POZ_0_0" FromRole="PaskiPlacowe" ToRole="PaskiPlacowe_POZ" />
+          <NavigationProperty Name="Uzytkownicy" Relationship="SalarySlipModel.FK_PaskiPlacowe_0_0" FromRole="PaskiPlacowe" ToRole="Uzytkownicy" />
         </EntityType>
         <EntityType Name="SL_TYPOW_POL_PP">
           <Key>
@@ -120,36 +120,9 @@
           <Property Name="UNIKALNY" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="PaskiPlacowe_POZ" Relationship="SalarySlipModel.FK_PaskiPlacowe_POZ_1_0" FromRole="SL_TYPOW_POL_PP" ToRole="PaskiPlacowe_POZ" />
         </EntityType>
-        <EntityType Name="Uzytkownicy">
-          <Key>
-            <PropertyRef Name="ID_UZYTKOWNIKA" />
-          </Key>
-          <Property Name="ID_UZYTKOWNIKA" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NAZWA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="LOGIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="HASLO" Type="Binary" MaxLength="2147483647" FixedLength="false" Nullable="false" />
-          <NavigationProperty Name="PaskiPlacowe" Relationship="Self.FK_PaskiPlacowe_0_0" FromRole="Uzytkownicy" ToRole="PaskiPlacowe" />
-        </EntityType>
-        <Association Name="FK_PaskiPlacowe_0_0">
-          <End Role="Uzytkownicy" Type="Self.Uzytkownicy" Multiplicity="1" />
-          <End Role="PaskiPlacowe" Type="Self.PaskiPlacowe" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Uzytkownicy">
-              <PropertyRef Name="ID_UZYTKOWNIKA" />
-            </Principal>
-            <Dependent Role="PaskiPlacowe">
-              <PropertyRef Name="ID_UZYTKOWNIKA" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="PaskiPlacowe" EntityType="Self.PaskiPlacowe" />
           <EntitySet Name="SL_TYPOW_POL_PP" EntityType="Self.SL_TYPOW_POL_PP" />
-          <EntitySet Name="Uzytkownicy" EntityType="Self.Uzytkownicy" />
-          <AssociationSet Name="FK_PaskiPlacowe_0_0" Association="Self.FK_PaskiPlacowe_0_0">
-            <End Role="Uzytkownicy" EntitySet="Uzytkownicy" />
-            <End Role="PaskiPlacowe" EntitySet="PaskiPlacowe" />
-          </AssociationSet>
           <EntitySet Name="PaskiPlacowe_POZ" EntityType="SalarySlipModel.PaskiPlacowe_POZ" />
           <AssociationSet Name="FK_PaskiPlacowe_POZ_0_0" Association="SalarySlipModel.FK_PaskiPlacowe_POZ_0_0">
             <End Role="PaskiPlacowe" EntitySet="PaskiPlacowe" />
@@ -158,6 +131,11 @@
           <AssociationSet Name="FK_PaskiPlacowe_POZ_1_0" Association="SalarySlipModel.FK_PaskiPlacowe_POZ_1_0">
             <End Role="SL_TYPOW_POL_PP" EntitySet="SL_TYPOW_POL_PP" />
             <End Role="PaskiPlacowe_POZ" EntitySet="PaskiPlacowe_POZ" />
+          </AssociationSet>
+          <EntitySet Name="Uzytkownicy" EntityType="SalarySlipModel.Uzytkownicy" />
+          <AssociationSet Name="FK_PaskiPlacowe_0_0" Association="SalarySlipModel.FK_PaskiPlacowe_0_0">
+            <End Role="Uzytkownicy" EntitySet="Uzytkownicy" />
+            <End Role="PaskiPlacowe" EntitySet="PaskiPlacowe" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="PaskiPlacowe_POZ">
@@ -195,6 +173,28 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Uzytkownicy">
+          <Key>
+            <PropertyRef Name="ID_UZYTKOWNIKA" />
+          </Key>
+          <Property Name="ID_UZYTKOWNIKA" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAZWA" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LOGIN" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="HASLO" Type="Binary" MaxLength="2147483647" FixedLength="false" />
+          <NavigationProperty Name="PaskiPlacowe" Relationship="SalarySlipModel.FK_PaskiPlacowe_0_0" FromRole="Uzytkownicy" ToRole="PaskiPlacowe" />
+        </EntityType>
+        <Association Name="FK_PaskiPlacowe_0_0">
+          <End Type="SalarySlipModel.Uzytkownicy" Role="Uzytkownicy" Multiplicity="1" />
+          <End Type="SalarySlipModel.PaskiPlacowe" Role="PaskiPlacowe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uzytkownicy">
+              <PropertyRef Name="ID_UZYTKOWNIKA" />
+            </Principal>
+            <Dependent Role="PaskiPlacowe">
+              <PropertyRef Name="ID_UZYTKOWNIKA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -221,16 +221,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Uzytkownicy">
-            <EntityTypeMapping TypeName="SalarySlipModel.Uzytkownicy">
-              <MappingFragment StoreEntitySet="Uzytkownicy">
-                <ScalarProperty Name="ID_UZYTKOWNIKA" ColumnName="ID_UZYTKOWNIKA" />
-                <ScalarProperty Name="NAZWA" ColumnName="NAZWA" />
-                <ScalarProperty Name="LOGIN" ColumnName="LOGIN" />
-                <ScalarProperty Name="HASLO" ColumnName="HASLO" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="PaskiPlacowe_POZ">
             <EntityTypeMapping TypeName="SalarySlipModel.PaskiPlacowe_POZ">
               <MappingFragment StoreEntitySet="PaskiPlacowe_POZ">
@@ -238,6 +228,16 @@
                 <ScalarProperty Name="ID_PASKA" ColumnName="ID_PASKA" />
                 <ScalarProperty Name="ID_TYPU_POLA" ColumnName="ID_TYPU_POLA" />
                 <ScalarProperty Name="ID_PASEK_PLACOWY_POZ" ColumnName="ID_PASEK_PLACOWY_POZ" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Uzytkownicy">
+            <EntityTypeMapping TypeName="SalarySlipModel.Uzytkownicy">
+              <MappingFragment StoreEntitySet="Uzytkownicy">
+                <ScalarProperty Name="HASLO" ColumnName="HASLO" />
+                <ScalarProperty Name="LOGIN" ColumnName="LOGIN" />
+                <ScalarProperty Name="NAZWA" ColumnName="NAZWA" />
+                <ScalarProperty Name="ID_UZYTKOWNIKA" ColumnName="ID_UZYTKOWNIKA" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

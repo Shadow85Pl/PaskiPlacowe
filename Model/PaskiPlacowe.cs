@@ -25,8 +25,8 @@ namespace PaskiPlacowe.Model
         public long ID_UZYTKOWNIKA { get; set; }
         public byte[] PLIK { get; set; }
     
-        public virtual Uzytkownicy Uzytkownicy { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PaskiPlacowe_POZ> PaskiPlacowe_POZ { get; set; }
+        public virtual Uzytkownicy Uzytkownicy { get; set; }
     }
 }
