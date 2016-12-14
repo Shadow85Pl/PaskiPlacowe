@@ -1,16 +1,12 @@
 ﻿using PaskiPlacowe.BaseClasses;
+using PaskiPlacowe.Events;
 using Prism.Commands;
-using Prism.Mvvm;
+using Prism.Events;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Security;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using PaskiPlacowe;
 using System.Security.Cryptography;
+using System.Windows.Input;
 
 namespace PaskiPlacowe.ViewModel
 {
@@ -26,13 +22,13 @@ namespace PaskiPlacowe.ViewModel
         private DelegateCommand _Cancel;
         private DelegateCommand _AddNewUser;
         #endregion
-        public LoginVM()
+        public LoginVM(IEventAggregator eventAggregator) :base(eventAggregator)
         {
             _LogInUser = new DelegateCommand(LogInUserFunc, CanLogIn);
             _Cancel = new DelegateCommand(CancelFunc);
             _AddNewUser = new DelegateCommand(AddNewUserFunc);
         }
-
+        
         private Model.Uzytkownicy LoginBegin(bool AddingUser)
         {
             LoginErrMSG = String.Empty;
@@ -59,7 +55,7 @@ namespace PaskiPlacowe.ViewModel
                     });
                     DB.SaveChanges();
                 }
-                //TODO: Login user to application
+                LogIn();
             }
             catch (Exception Ex)
             {
@@ -90,7 +86,7 @@ namespace PaskiPlacowe.ViewModel
                     if ((this.Password != null && !this.Password.IsNullOrWhiteSpace() && User.HASLO!=null && User.HASLO.Equals(this.Password.Process(h.ComputeHash))) ||
                         ((this.Password==null || this.Password.IsNullOrWhiteSpace()) && User.HASLO==null))
                     {
-                        //TODO: Login user to application
+                        LogIn();
                     }
                     else
                         throw new Exception(Localization.Messages.MSG_USER_CREDENTIALS_INCORECT);
@@ -100,6 +96,10 @@ namespace PaskiPlacowe.ViewModel
             {
                 LoginErrMSG = Ex.Message;
             }
+        }
+        private void LogIn()
+        {
+            eventAggregator.GetEvent<LoginEvent>().Publish(new LoginD() { Login=this.Login});
         }
         #region Properties
         public string Login

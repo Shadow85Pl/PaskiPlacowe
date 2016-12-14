@@ -17,6 +17,9 @@
         <DataTemplate DataType="{x:Type VM:LoginVM}">
             <V:LoginV/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type VM:SalarySlipVM}">
+            <V:SalarySlipV/>
+        </DataTemplate>
         <BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
     </Controls:MetroWindow.Resources>
     <Grid>

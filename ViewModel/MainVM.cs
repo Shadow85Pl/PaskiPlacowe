@@ -1,5 +1,6 @@
 ﻿using PaskiPlacowe.BaseClasses;
 using Prism.Mvvm;
+using Prism.Events;
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
@@ -8,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using PaskiPlacowe.Events;
 
 namespace PaskiPlacowe.ViewModel
 {
@@ -16,13 +18,19 @@ namespace PaskiPlacowe.ViewModel
         #region Private Variables
         private BindableBase _currentPageViewModel = null;
         #endregion
-        public MainVM()
+        public MainVM():base(null)
         {
-            _currentPageViewModel = new LoginVM();
-           
+            eventAggregator = new EventAggregator();
+            eventAggregator.GetEvent<LoginEvent>().Subscribe(OnLoginEvent);
+            _currentPageViewModel = new LoginVM(eventAggregator);
         }
 
-        
+        private void OnLoginEvent(LoginD loginData)
+        {
+            LoginData.GetInstance().IsLoggedIn = true;
+            LoginData.GetInstance().Login = loginData.Login;
+            CurrentPageViewModel = new SalarySlipVM(eventAggregator);
+        }
 
         public BindableBase CurrentPageViewModel
         {

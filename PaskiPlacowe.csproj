@@ -54,10 +54,6 @@
       <HintPath>..\packages\MahApps.Metro.IconPacks.1.6.0\lib\net45\MahApps.Metro.IconPacks.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Prism, Version=6.2.0.0, Culture=neutral, PublicKeyToken=91a96d2a154366d8, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.Core.6.2.0\lib\net45\Prism.dll</HintPath>
       <Private>True</Private>
@@ -114,6 +110,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Themes\Blue.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SalarySlipV.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -176,8 +176,13 @@
       <DependentUpon>SalarySlip.tt</DependentUpon>
     </Compile>
     <Compile Include="Utils.cs" />
+    <Compile Include="Events\LoginEvent.cs" />
     <Compile Include="ViewModel\LoginVM.cs" />
     <Compile Include="ViewModel\MainVM.cs" />
+    <Compile Include="ViewModel\SalarySlipVM.cs" />
+    <Compile Include="View\SalarySlipV.xaml.cs">
+      <DependentUpon>SalarySlipV.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\LoginV.xaml.cs">
       <DependentUpon>LoginV.xaml</DependentUpon>
     </Compile>

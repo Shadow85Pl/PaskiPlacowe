@@ -1,5 +1,6 @@
 ﻿using PaskiPlacowe.Model;
 using Prism.Mvvm;
+using Prism.Events;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core.EntityClient;
@@ -14,11 +15,14 @@ namespace PaskiPlacowe.BaseClasses
     public class BaseViewModelClass: BindableBase
     {
         protected Entities DB;
-        public BaseViewModelClass():base()
+        protected IEventAggregator eventAggregator;
+        public BaseViewModelClass(IEventAggregator eventAggregator) :base()
         {
             CheckDB();
             DB = new Entities(CreateConnectionString(Consts.DBPath).ConnectionString);
+            this.eventAggregator = eventAggregator;
         }
+       
         private void CheckDB()
         {
             if (!Directory.Exists(Consts.AppDataFolder))
