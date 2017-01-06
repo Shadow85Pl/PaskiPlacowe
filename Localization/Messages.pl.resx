@@ -120,6 +120,9 @@
   <data name="MSG_ERR_LOGIN_FAILED" xml:space="preserve">
     <value>Logowanie nie powiodło się</value>
   </data>
+  <data name="MSG_FILE_NOT_CHOOSEN" xml:space="preserve">
+    <value>Wybierz plik</value>
+  </data>
   <data name="MSG_LOGIN_REQUIRED" xml:space="preserve">
     <value>Login jest wymagany</value>
   </data>

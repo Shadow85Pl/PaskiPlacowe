@@ -61,11 +61,47 @@ namespace PaskiPlacowe.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        public static string BTN_ADD {
+            get {
+                return ResourceManager.GetString("BTN_ADD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add new user.
         /// </summary>
         public static string BTN_ADD_NEW_USER {
             get {
                 return ResourceManager.GetString("BTN_ADD_NEW_USER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ....
+        /// </summary>
+        public static string BTN_CHOOSE_FILE {
+            get {
+                return ResourceManager.GetString("BTN_CHOOSE_FILE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string BTN_DELETE {
+            get {
+                return ResourceManager.GetString("BTN_DELETE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string BTN_EDIT {
+            get {
+                return ResourceManager.GetString("BTN_EDIT", resourceCulture);
             }
         }
         
@@ -79,11 +115,29 @@ namespace PaskiPlacowe.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to View.
+        /// </summary>
+        public static string BTN_VIEW {
+            get {
+                return ResourceManager.GetString("BTN_VIEW", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         public static string CANCEL {
             get {
                 return ResourceManager.GetString("CANCEL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please, choose file.
+        /// </summary>
+        public static string LABEL_CHOOSE_FILE {
+            get {
+                return ResourceManager.GetString("LABEL_CHOOSE_FILE", resourceCulture);
             }
         }
         
@@ -120,6 +174,24 @@ namespace PaskiPlacowe.Localization {
         public static string OK {
             get {
                 return ResourceManager.GetString("OK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exception.
+        /// </summary>
+        public static string SALARY_SLIP_ADD_EXC_TITLE {
+            get {
+                return ResourceManager.GetString("SALARY_SLIP_ADD_EXC_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add salary slip.
+        /// </summary>
+        public static string SALARY_SLIP_ADD_TITLE {
+            get {
+                return ResourceManager.GetString("SALARY_SLIP_ADD_TITLE", resourceCulture);
             }
         }
         

@@ -8,5 +8,6 @@ namespace PaskiPlacowe.Events
     internal class LoginD
     {
         public string Login { get; set; }
+        public long UserId { get; set; }
     }
 }

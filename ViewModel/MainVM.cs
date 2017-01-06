@@ -29,6 +29,8 @@ namespace PaskiPlacowe.ViewModel
         {
             LoginData.GetInstance().IsLoggedIn = true;
             LoginData.GetInstance().Login = loginData.Login;
+            LoginData.GetInstance().UserId = loginData.UserId;
+            OnPropertyChanged("LData");
             CurrentPageViewModel = new SalarySlipVM(eventAggregator);
         }
 
@@ -48,6 +50,13 @@ namespace PaskiPlacowe.ViewModel
             get
             {
                 return LoginData.GetInstance();
+            }
+        }
+        public int SalarySlipCount
+        {
+            get
+            {
+                return DB.PaskiPlacowe.Count();
             }
         }
     }

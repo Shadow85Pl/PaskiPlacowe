@@ -20,6 +20,9 @@
         <DataTemplate DataType="{x:Type VM:SalarySlipVM}">
             <V:SalarySlipV/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type VM:SalarySlipEDVM}">
+            <V:SalarySlipEDV/>
+        </DataTemplate>
         <BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter" />
     </Controls:MetroWindow.Resources>
     <Grid>
@@ -39,7 +42,12 @@
         </ToolBarTray>
         <ContentControl Content="{Binding CurrentPageViewModel}" Grid.Row="1" x:Name="WindowContent"/>
         <StatusBar Grid.Row="2" x:Name="Status" Visibility="{Binding Path=LData.IsLoggedIn, Converter={StaticResource booleanToVisibilityConverter}}">
-            statusbar
+            <StatusBarItem>
+                <TextBlock Text="{Binding Path=LData.Login, StringFormat=Zalogowany: {0}}"></TextBlock>
+            </StatusBarItem>
+            <StatusBarItem>
+                <TextBlock Text="{Binding Path=SalarySlipCount, StringFormat=Ilość pasków płacowych w systemie: {0}}"></TextBlock>
+            </StatusBarItem>
         </StatusBar>
     </Grid>
 </Controls:MetroWindow>

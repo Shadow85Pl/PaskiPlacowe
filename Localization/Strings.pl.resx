@@ -117,14 +117,32 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BTN_ADD" xml:space="preserve">
+    <value>Dodaj</value>
+  </data>
   <data name="BTN_ADD_NEW_USER" xml:space="preserve">
     <value>Dodaj nowego użytkownika</value>
+  </data>
+  <data name="BTN_CHOOSE_FILE" xml:space="preserve">
+    <value>...</value>
+  </data>
+  <data name="BTN_DELETE" xml:space="preserve">
+    <value>Usuń</value>
+  </data>
+  <data name="BTN_EDIT" xml:space="preserve">
+    <value>Edytuj</value>
   </data>
   <data name="BTN_LOG_IN" xml:space="preserve">
     <value>Zaloguj</value>
   </data>
+  <data name="BTN_VIEW" xml:space="preserve">
+    <value>Podgląd</value>
+  </data>
   <data name="CANCEL" xml:space="preserve">
     <value>Anuluj</value>
+  </data>
+  <data name="LABEL_CHOOSE_FILE" xml:space="preserve">
+    <value>Wybierz plik</value>
   </data>
   <data name="LABEL_LOGIN" xml:space="preserve">
     <value>Login</value>
@@ -137,6 +155,12 @@
   </data>
   <data name="OK" xml:space="preserve">
     <value>OK</value>
+  </data>
+  <data name="SALARY_SLIP_ADD_EXC_TITLE" xml:space="preserve">
+    <value>Błąd</value>
+  </data>
+  <data name="SALARY_SLIP_ADD_TITLE" xml:space="preserve">
+    <value>Dodaj pasek płacowy</value>
   </data>
   <data name="YES" xml:space="preserve">
     <value>Tak</value>

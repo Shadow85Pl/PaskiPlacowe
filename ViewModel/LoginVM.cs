@@ -47,15 +47,17 @@ namespace PaskiPlacowe.ViewModel
                     throw new Exception(Localization.Messages.MSG_USER_ALREADY_EXISTS);
                 using (var h = new SHA512Managed())
                 {
-                    DB.Uzytkownicy.Add(new Model.Uzytkownicy()
+                    Model.Uzytkownicy NewUser=new Model.Uzytkownicy()
                     {
-                        NAZWA= this.Login,
+                        NAZWA = this.Login,
                         LOGIN = this.Login,
-                        HASLO = this.Password!=null&&!this.Password.IsNullOrWhiteSpace()?this.Password.Process(h.ComputeHash):null
-                    });
+                        HASLO = this.Password != null && !this.Password.IsNullOrWhiteSpace() ? this.Password.Process(h.ComputeHash) : null
+                    };
+                    DB.Uzytkownicy.Add(NewUser);
                     DB.SaveChanges();
+                    LogIn(NewUser.ID_UZYTKOWNIKA); 
                 }
-                LogIn();
+                
             }
             catch (Exception Ex)
             {
@@ -86,7 +88,7 @@ namespace PaskiPlacowe.ViewModel
                     if ((this.Password != null && !this.Password.IsNullOrWhiteSpace() && User.HASLO!=null && User.HASLO.Equals(this.Password.Process(h.ComputeHash))) ||
                         ((this.Password==null || this.Password.IsNullOrWhiteSpace()) && User.HASLO==null))
                     {
-                        LogIn();
+                        LogIn(User.ID_UZYTKOWNIKA);
                     }
                     else
                         throw new Exception(Localization.Messages.MSG_USER_CREDENTIALS_INCORECT);
@@ -97,9 +99,9 @@ namespace PaskiPlacowe.ViewModel
                 LoginErrMSG = Ex.Message;
             }
         }
-        private void LogIn()
+        private void LogIn(long UserId)
         {
-            eventAggregator.GetEvent<LoginEvent>().Publish(new LoginD() { Login=this.Login});
+            eventAggregator.GetEvent<LoginEvent>().Publish(new LoginD() { Login=this.Login, UserId=UserId });
         }
         #region Properties
         public string Login

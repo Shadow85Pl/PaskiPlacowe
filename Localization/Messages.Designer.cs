@@ -70,6 +70,15 @@ namespace PaskiPlacowe.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Choose file.
+        /// </summary>
+        internal static string MSG_FILE_NOT_CHOOSEN {
+            get {
+                return ResourceManager.GetString("MSG_FILE_NOT_CHOOSEN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Login is required.
         /// </summary>
         internal static string MSG_LOGIN_REQUIRED {

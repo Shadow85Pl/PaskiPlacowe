@@ -4,9 +4,58 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PaskiPlacowe.View"
+             xmlns:localization="clr-namespace:PaskiPlacowe.Localization"
+             xmlns:prism="http://www.codeplex.com/prism"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    <i:Interaction.Triggers>
+        <prism:InteractionRequestTrigger SourceObject="{Binding SalarySlipED, Mode=OneWay}">
+            <!-- This PopupWindowAction has a custom view defined. When this action is executed the view will be shown inside a new window -->
+            <!-- Take into account that the view is created only once and will be reused each time the action is executed -->
+            <prism:PopupWindowAction IsModal="True" CenterOverAssociatedObject="True">
+                <prism:PopupWindowAction.WindowContent>
+                    <local:SalarySlipEDV/>
+                </prism:PopupWindowAction.WindowContent>
+                <prism:PopupWindowAction.WindowStyle>
+                    <Style TargetType="{x:Type Window}">
+                        <Setter Property="Height" Value="130"/>
+                        <Setter Property="Width" Value="300"/>
+                    </Style>
+                </prism:PopupWindowAction.WindowStyle>
+            </prism:PopupWindowAction>
+        </prism:InteractionRequestTrigger>
+    </i:Interaction.Triggers>
     <Grid>
-        <TextBlock Text="It's working:)"  Foreground="White"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ListBox x:Name="listBox" Grid.Column="0" Grid.Row="1" MinWidth="100" ItemsSource="{Binding SalarySlipList}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="0,2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="100" />
+                        </Grid.ColumnDefinitions>
+                        <Image Height="40" Width="32" />
+                        <TextBlock Grid.Column="1" Text="{Binding Name}" />
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <WrapPanel Grid.Column="1" Grid.Row="1">
+            <TextBlock Text="test"/>
+        </WrapPanel>
+        <WrapPanel Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0">
+            <Button Content="{x:Static localization:Strings.BTN_ADD}" Command="{Binding SalarySlipEAddCommand}"/>
+            <Button Content="{x:Static localization:Strings.BTN_DELETE}" Command="{Binding DeleteSalarySlip}"/>
+        </WrapPanel>
     </Grid>
 </UserControl>

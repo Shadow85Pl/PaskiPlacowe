@@ -9,8 +9,9 @@ namespace PaskiPlacowe
     class LoginData
     {
         #region properties
+        public long UserId { get; set; }
         public Boolean IsLoggedIn { get; set; }=false;
-        public String Login;
+        public String Login { get; set; }
         #endregion
         private static LoginData _Instance;
         public static LoginData GetInstance()
