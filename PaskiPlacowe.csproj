@@ -117,6 +117,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="InteractionRequest\MetroConfirmationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InteractionRequest\MetroNotificationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InteractionRequest\MetroPopupWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\Icons.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -151,6 +163,16 @@
     </Compile>
     <Compile Include="BaseClasses\BaseViewModelClass.cs" />
     <Compile Include="Consts.cs" />
+    <Compile Include="InteractionRequest\MetroConfirmationWindow.xaml.cs">
+      <DependentUpon>MetroConfirmationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InteractionRequest\MetroNotificationWindow.xaml.cs">
+      <DependentUpon>MetroNotificationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InteractionRequest\MetroPopupWindow.xaml.cs">
+      <DependentUpon>MetroPopupWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InteractionRequest\MetroPopupWindowAction.cs" />
     <Compile Include="InteractionRequest\OpenFileDialogAction.cs" />
     <Compile Include="InteractionRequest\OpenFileDialogConfirmation.cs" />
     <Compile Include="Localization\Messages.Designer.cs">

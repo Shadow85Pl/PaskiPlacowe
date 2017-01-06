@@ -41,7 +41,7 @@ namespace PaskiPlacowe.ViewModel
         {
             get
             {
-                return DB.PaskiPlacowe.Local;
+                return new ObservableCollection<Model.PaskiPlacowe>(DB.PaskiPlacowe);
             }
         }
     }

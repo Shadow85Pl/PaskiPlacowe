@@ -19,7 +19,7 @@
             <InteractionRequest:OpenFileDialogAction/>
         </prism:InteractionRequestTrigger>
         <prism:InteractionRequestTrigger SourceObject="{Binding NotificationInteraction}">
-            <prism:PopupWindowAction IsModal="True" CenterOverAssociatedObject="True"/>
+            <InteractionRequest:MetroPopupWindowAction IsModal="True" CenterOverAssociatedObject="True"/>
         </prism:InteractionRequestTrigger>
     </i:Interaction.Triggers>
     <Grid Margin="5">
@@ -32,9 +32,13 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.ColumnSpan="2" Text="{x:Static localization:Strings.LABEL_CHOOSE_FILE}"/>
-        <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding ChoosenFile}"/>
-        <Button Grid.Column="1" Grid.Row="1" Content="{x:Static localization:Strings.BTN_CHOOSE_FILE}" Style="{StaticResource ButtonWithTBMargin}" Command="{Binding ChooseFileCommand}"/>
+        <StackPanel Grid.Row="0">
+            <TextBlock Grid.ColumnSpan="2" Text="{x:Static localization:Strings.LABEL_CHOOSE_FILE}"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <TextBlock Text="{Binding ChoosenFile}"/>
+                <Button Content="{x:Static localization:Strings.BTN_CHOOSE_FILE}" Style="{StaticResource ButtonWithTBMargin}" Command="{Binding ChooseFileCommand}"/>
+            </StackPanel>
+        </StackPanel>
         <StackPanel Grid.ColumnSpan="2" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Content="{x:Static localization:Strings.BTN_ADD}" Command="{Binding AddSalarySlipCommand}" IsDefault="True" IsCancel="False"/>
             <Button Content="{x:Static localization:Strings.CANCEL}" IsDefault="False" IsCancel="True"/>
