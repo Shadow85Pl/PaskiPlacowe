@@ -17,7 +17,8 @@ namespace PaskiPlacowe.ViewModel
     public class SalarySlipEDVM : BaseViewModelClass, IInteractionRequestAware
     {
         private Confirmation _notification;
-        private string _ChoosenFile; 
+        private string _ChoosenFile;
+        private string _SalarySlipName;
         public DelegateCommand AddSalarySlipCommand { get; private set; }
         public DelegateCommand ChooseFileCommand { get; private set; }
         public InteractionRequest<OpenFileDialogConfirmation> OpenFileRequest { get; private set; }
@@ -51,6 +52,15 @@ namespace PaskiPlacowe.ViewModel
             ChooseFileCommand = new DelegateCommand(RaiseChooseFile);
             OpenFileRequest = new InteractionRequest<OpenFileDialogConfirmation>();
             NotificationInteraction = new InteractionRequest<INotification>();
+            SalarySlipName = String.Format(Localization.Strings.SALARY_SLIP_NAME_PATTERN, DateTime.Now);
+        }
+        public string SalarySlipName
+        {
+            get { return _SalarySlipName; }
+            set
+            {
+                SetProperty(ref _SalarySlipName, value as String);
+            }
         }
 
         private void RaiseChooseFile()
@@ -81,7 +91,7 @@ namespace PaskiPlacowe.ViewModel
             DB.PaskiPlacowe.Add(new PaskiPlacowe.Model.PaskiPlacowe()
             {
                 ID_UZYTKOWNIKA=LoginData.GetInstance().UserId,
-                NAZWA=ChoosenFile,
+                NAZWA=SalarySlipName,
                 PLIK=File.ReadAllBytes(ChoosenFile)                
             });
             DB.SaveChanges();
@@ -91,6 +101,8 @@ namespace PaskiPlacowe.ViewModel
         {
             try
             {
+                if(String.IsNullOrWhiteSpace(_SalarySlipName))
+                    throw new Exception(Localization.Messages.MSG_NAME_NOT_CHOOSEN);
                 if (String.IsNullOrWhiteSpace(ChoosenFile))
                     throw new Exception(Localization.Messages.MSG_FILE_NOT_CHOOSEN);
                 return true;

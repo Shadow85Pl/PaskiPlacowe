@@ -151,11 +151,38 @@ namespace PaskiPlacowe.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string LABEL_NAME {
+            get {
+                return ResourceManager.GetString("LABEL_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No salary slip....
+        /// </summary>
+        public static string LABEL_NO_SALARY_SLIP_ITEMS {
+            get {
+                return ResourceManager.GetString("LABEL_NO_SALARY_SLIP_ITEMS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
         public static string LABEL_PASSWORD {
             get {
                 return ResourceManager.GetString("LABEL_PASSWORD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Loading PDF document.
+        /// </summary>
+        public static string LOADING_PDF_DOCUMENT {
+            get {
+                return ResourceManager.GetString("LOADING_PDF_DOCUMENT", resourceCulture);
             }
         }
         
@@ -192,6 +219,15 @@ namespace PaskiPlacowe.Localization {
         public static string SALARY_SLIP_ADD_TITLE {
             get {
                 return ResourceManager.GetString("SALARY_SLIP_ADD_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sallary slip {0:d}.
+        /// </summary>
+        public static string SALARY_SLIP_NAME_PATTERN {
+            get {
+                return ResourceManager.GetString("SALARY_SLIP_NAME_PATTERN", resourceCulture);
             }
         }
         

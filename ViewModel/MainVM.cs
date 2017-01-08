@@ -20,7 +20,7 @@ namespace PaskiPlacowe.ViewModel
         #endregion
         public MainVM():base(null)
         {
-            eventAggregator = new EventAggregator();
+            eventAggregator = AppService.Instance.EventAggregator;
             eventAggregator.GetEvent<LoginEvent>().Subscribe(OnLoginEvent);
             _currentPageViewModel = new LoginVM(eventAggregator);
         }

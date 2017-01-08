@@ -28,12 +28,12 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="Auto"/>
-        </Grid.ColumnDefinitions>
         <StackPanel Grid.Row="0">
-            <TextBlock Grid.ColumnSpan="2" Text="{x:Static localization:Strings.LABEL_CHOOSE_FILE}"/>
+            <TextBlock Text="{x:Static localization:Strings.LABEL_NAME}"/>
+            <TextBox Text="{Binding SalarySlipName}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1">
+            <TextBlock Text="{x:Static localization:Strings.LABEL_CHOOSE_FILE}"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <TextBlock Text="{Binding ChoosenFile}"/>
                 <Button Content="{x:Static localization:Strings.BTN_CHOOSE_FILE}" Style="{StaticResource ButtonWithTBMargin}" Command="{Binding ChooseFileCommand}"/>

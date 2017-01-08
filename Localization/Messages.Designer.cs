@@ -88,6 +88,15 @@ namespace PaskiPlacowe.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enter the name.
+        /// </summary>
+        internal static string MSG_NAME_NOT_CHOOSEN {
+            get {
+                return ResourceManager.GetString("MSG_NAME_NOT_CHOOSEN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password is required.
         /// </summary>
         internal static string MSG_PASSWORD_REQUIRED {

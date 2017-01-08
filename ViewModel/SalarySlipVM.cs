@@ -8,13 +8,16 @@ using Prism.Events;
 using Prism.Interactivity.InteractionRequest;
 using System.Collections.ObjectModel;
 using Prism.Commands;
-//using Microsoft.Practices.Prism.Interactivity.
+using PaskiPlacowe.Model;
+using System.IO;
+using PaskiPlacowe.Events;
 
 namespace PaskiPlacowe.ViewModel
 {
     internal class SalarySlipVM : BaseViewModelClass
     {
         private Confirmation tmp;
+        private PaskiPlacowe.Model.PaskiPlacowe _SelectedSalarySlip;
         public InteractionRequest<IConfirmation> SalarySlipED { get; private set; }
         public DelegateCommand SalarySlipEAddCommand { get; private set; }
         
@@ -23,7 +26,6 @@ namespace PaskiPlacowe.ViewModel
         {
             this.SalarySlipED = new InteractionRequest<IConfirmation>();
             this.SalarySlipEAddCommand = new DelegateCommand(this.RaiseSalarySlipAdd);
-            
         }
         
         private void RaiseSalarySlipAdd()
@@ -35,13 +37,24 @@ namespace PaskiPlacowe.ViewModel
         }
         private void AddSalarySlip(IConfirmation Data)
         {
-            object tmp = Data.Content;
+            if (Data.Confirmed)
+                OnPropertyChanged("SalarySlipList");
         }
         public ObservableCollection<Model.PaskiPlacowe> SalarySlipList
         {
             get
             {
-                return new ObservableCollection<Model.PaskiPlacowe>(DB.PaskiPlacowe);
+                long LogedInUserID = LoginData.GetInstance().UserId;
+                return new ObservableCollection<Model.PaskiPlacowe>(DB.PaskiPlacowe.Where(a=>a.ID_UZYTKOWNIKA== LogedInUserID));
+            }
+        }
+        public PaskiPlacowe.Model.PaskiPlacowe SelectedSalarySlip
+        {
+            get { return _SelectedSalarySlip; }
+            set
+            {
+                SetProperty(ref _SelectedSalarySlip, value as PaskiPlacowe.Model.PaskiPlacowe);
+                eventAggregator.GetEvent<PDFLoadEvent>().Publish(new PDFLoadD() { PDFData= (value as PaskiPlacowe.Model.PaskiPlacowe)?.PLIK });
             }
         }
     }

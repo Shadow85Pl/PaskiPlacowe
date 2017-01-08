@@ -29,7 +29,7 @@
     </i:Interaction.Triggers>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -37,23 +37,19 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <ListBox x:Name="listBox" Grid.Column="0" Grid.Row="1" MinWidth="100" ItemsSource="{Binding SalarySlipList}">
+        <ListBox x:Name="listBox" Grid.Column="0" Grid.Row="1" MinWidth="200" ItemsSource="{Binding SalarySlipList}" SelectedItem="{Binding SelectedSalarySlip, Mode=TwoWay}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid Margin="0,2">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="100" />
                         </Grid.ColumnDefinitions>
-                        <Image Height="40" Width="32" />
-                        <TextBlock Grid.Column="1" Text="{Binding NAZWA}" />
+                        <TextBlock Grid.Column="0" Text="{Binding NAZWA}" />
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <WrapPanel Grid.Column="1" Grid.Row="1">
-            <TextBlock Text="test"/>
-        </WrapPanel>
+        <local:SalarySlipDetailV Grid.Column="1" Grid.Row="1" Margin="10 0 0 0"/>
         <WrapPanel Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0">
             <Button Content="{x:Static localization:Strings.BTN_ADD}" Command="{Binding SalarySlipEAddCommand}"/>
             <Button Content="{x:Static localization:Strings.BTN_DELETE}" Command="{Binding DeleteSalarySlip}"/>

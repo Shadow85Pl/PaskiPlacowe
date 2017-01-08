@@ -126,6 +126,9 @@
   <data name="MSG_LOGIN_REQUIRED" xml:space="preserve">
     <value>Login jest wymagany</value>
   </data>
+  <data name="MSG_NAME_NOT_CHOOSEN" xml:space="preserve">
+    <value>Nie podano nazwy</value>
+  </data>
   <data name="MSG_PASSWORD_REQUIRED" xml:space="preserve">
     <value>Hasło jest wymagane</value>
   </data>

@@ -78,6 +78,10 @@
       <HintPath>..\packages\Prism.Wpf.6.2.0\lib\net45\Prism.Wpf.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Syncfusion.Compression.Base, Version=14.4451.0.15, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
+    <Reference Include="Syncfusion.Pdf.Base, Version=14.4451.0.15, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
+    <Reference Include="Syncfusion.PdfViewer.WPF, Version=14.4451.0.15, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
+    <Reference Include="Syncfusion.Shared.WPF, Version=14.4451.0.15, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -93,8 +97,10 @@
       <HintPath>..\packages\System.Data.SQLite.Linq.1.0.103\lib\net451\System.Data.SQLite.Linq.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\MahApps.Metro.1.3.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
       <Private>True</Private>
@@ -141,6 +147,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\SalarySlipDetailV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\SalarySlipEDV.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -161,8 +171,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="AppService.cs" />
     <Compile Include="BaseClasses\BaseViewModelClass.cs" />
     <Compile Include="Consts.cs" />
+    <Compile Include="Events\PDFLoadEvent.cs" />
+    <Compile Include="Extenders\WebBrowserExtender.cs" />
     <Compile Include="InteractionRequest\MetroConfirmationWindow.xaml.cs">
       <DependentUpon>MetroConfirmationWindow.xaml</DependentUpon>
     </Compile>
@@ -225,6 +238,9 @@
     <Compile Include="ViewModel\MainVM.cs" />
     <Compile Include="ViewModel\SalarySlipEDVM.cs" />
     <Compile Include="ViewModel\SalarySlipVM.cs" />
+    <Compile Include="View\SalarySlipDetailV.xaml.cs">
+      <DependentUpon>SalarySlipDetailV.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\SalarySlipEDV.xaml.cs">
       <DependentUpon>SalarySlipEDV.xaml</DependentUpon>
     </Compile>

@@ -9,20 +9,20 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel VerticalAlignment="Center" Margin="10">
-        <TextBlock Text="{x:Static main:Consts.AppNameLong}"></TextBlock>
-        <TextBlock Text="{Binding LoginErrMSG}"></TextBlock>
+        <TextBlock Text="{x:Static main:Consts.AppNameLong}" Style="{StaticResource H1}"/>
+        <TextBlock Text="{Binding LoginErrMSG}"/>
         <StackPanel>
-            <TextBlock Text="{x:Static localization:Strings.LABEL_LOGIN}"></TextBlock>
-            <TextBox x:Name="Login" Text="{Binding Login, Mode=TwoWay}"></TextBox>
+            <TextBlock Text="{x:Static localization:Strings.LABEL_LOGIN}"/>
+            <TextBox x:Name="Login" Text="{Binding Login, Mode=TwoWay}"/>
         </StackPanel>
         <StackPanel>
-            <TextBlock Text="{x:Static localization:Strings.LABEL_PASSWORD}"></TextBlock>
-            <PasswordBox x:Name="Pass" PasswordChanged="Pass_PasswordChanged"></PasswordBox>
+            <TextBlock Text="{x:Static localization:Strings.LABEL_PASSWORD}"/>
+            <PasswordBox x:Name="Pass" PasswordChanged="Pass_PasswordChanged"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Content="{x:Static localization:Strings.BTN_ADD_NEW_USER}" IsDefault="True" Command="{Binding AddNewUser}"></Button>
-            <Button Content="{x:Static localization:Strings.BTN_LOG_IN}" IsDefault="True" Command="{Binding LogInUser}"></Button>
-            <Button Content="{x:Static localization:Strings.CANCEL}" Command="{Binding Cancel}" IsCancel="True"></Button>
+            <Button Content="{x:Static localization:Strings.BTN_ADD_NEW_USER}" IsDefault="True" Command="{Binding AddNewUser}"/>
+            <Button Content="{x:Static localization:Strings.BTN_LOG_IN}" IsDefault="True" Command="{Binding LogInUser}"/>
+            <Button Content="{x:Static localization:Strings.CANCEL}" Command="{Binding Cancel}" IsCancel="True"/>
         </StackPanel>
     </StackPanel>
 </UserControl>
