@@ -115,6 +115,15 @@ namespace PaskiPlacowe.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Logout.
+        /// </summary>
+        public static string BTN_LOGOUT {
+            get {
+                return ResourceManager.GetString("BTN_LOGOUT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to View.
         /// </summary>
         public static string BTN_VIEW {

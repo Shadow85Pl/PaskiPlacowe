@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.Win32;
 using PaskiPlacowe.InteractionRequest;
+using PaskiPlacowe.Model;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -8,6 +9,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using PaskiPlacowe.Utils;
 
 namespace PaskiPlacowe
 {
@@ -19,12 +21,7 @@ namespace PaskiPlacowe
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            InitializeAutoMapper();
-        }
-
-        private void InitializeAutoMapper()
-        {
-            Mapper.Initialize(cfg=> cfg.CreateMap<OpenFileDialogConfirmation, OpenFileDialog>());
+            AutomapperSetup.AutomapperInitialize();
         }
     }
 }

@@ -18,10 +18,17 @@
           <Key>
             <PropertyRef Name="ID_PASEK_PLACOWY_POZ" />
           </Key>
-          <Property Name="ID_PASEK_PLACOWY_POZ" Type="integer" Nullable="false" />
+          <Property Name="ID_PASEK_PLACOWY_POZ" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ID_TYPU_POLA" Type="integer" Nullable="false" />
           <Property Name="ID_PASKA" Type="integer" Nullable="false" />
           <Property Name="WARTOSC" Type="varchar" MaxLength="8000" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SL_GRUPY_TYPOW_POL_PP">
+          <Key>
+            <PropertyRef Name="ID_GRUPY" />
+          </Key>
+          <Property Name="ID_GRUPY" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazwa" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="SL_TYPOW_POL_PP">
           <Key>
@@ -31,6 +38,7 @@
           <Property Name="KOD" Type="varchar" MaxLength="2" Nullable="false" />
           <Property Name="NAZWA" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="UNIKALNY" Type="bit" Nullable="false" />
+          <Property Name="ID_GRUPY" Type="integer" Nullable="false" />
         </EntityType>
         <EntityType Name="Uzytkownicy">
           <Key>
@@ -54,18 +62,6 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PaskiPlacowe_POZ_0_0">
-          <End Role="PaskiPlacowe" Type="Self.PaskiPlacowe" Multiplicity="1" />
-          <End Role="PaskiPlacowe_POZ" Type="Self.PaskiPlacowe_POZ" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PaskiPlacowe">
-              <PropertyRef Name="ID_PASKA" />
-            </Principal>
-            <Dependent Role="PaskiPlacowe_POZ">
-              <PropertyRef Name="ID_PASKA" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PaskiPlacowe_POZ_1_0">
           <End Role="SL_TYPOW_POL_PP" Type="Self.SL_TYPOW_POL_PP" Multiplicity="1" />
           <End Role="PaskiPlacowe_POZ" Type="Self.PaskiPlacowe_POZ" Multiplicity="*" />
           <ReferentialConstraint>
@@ -77,9 +73,34 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PaskiPlacowe_POZ_1_0">
+          <End Role="PaskiPlacowe" Type="Self.PaskiPlacowe" Multiplicity="1" />
+          <End Role="PaskiPlacowe_POZ" Type="Self.PaskiPlacowe_POZ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaskiPlacowe">
+              <PropertyRef Name="ID_PASKA" />
+            </Principal>
+            <Dependent Role="PaskiPlacowe_POZ">
+              <PropertyRef Name="ID_PASKA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SL_TYPOW_POL_PP_0_0">
+          <End Role="SL_GRUPY_TYPOW_POL_PP" Type="Self.SL_GRUPY_TYPOW_POL_PP" Multiplicity="1" />
+          <End Role="SL_TYPOW_POL_PP" Type="Self.SL_TYPOW_POL_PP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SL_GRUPY_TYPOW_POL_PP">
+              <PropertyRef Name="ID_GRUPY" />
+            </Principal>
+            <Dependent Role="SL_TYPOW_POL_PP">
+              <PropertyRef Name="ID_GRUPY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="SalarySlipModelStoreContainer">
           <EntitySet Name="PaskiPlacowe" EntityType="Self.PaskiPlacowe" store:Type="Tables" />
           <EntitySet Name="PaskiPlacowe_POZ" EntityType="Self.PaskiPlacowe_POZ" store:Type="Tables" />
+          <EntitySet Name="SL_GRUPY_TYPOW_POL_PP" EntityType="Self.SL_GRUPY_TYPOW_POL_PP" store:Type="Tables" />
           <EntitySet Name="SL_TYPOW_POL_PP" EntityType="Self.SL_TYPOW_POL_PP" store:Type="Tables" />
           <EntitySet Name="Uzytkownicy" EntityType="Self.Uzytkownicy" store:Type="Tables" />
           <AssociationSet Name="FK_PaskiPlacowe_0_0" Association="Self.FK_PaskiPlacowe_0_0">
@@ -87,12 +108,16 @@
             <End Role="PaskiPlacowe" EntitySet="PaskiPlacowe" />
           </AssociationSet>
           <AssociationSet Name="FK_PaskiPlacowe_POZ_0_0" Association="Self.FK_PaskiPlacowe_POZ_0_0">
-            <End Role="PaskiPlacowe" EntitySet="PaskiPlacowe" />
+            <End Role="SL_TYPOW_POL_PP" EntitySet="SL_TYPOW_POL_PP" />
             <End Role="PaskiPlacowe_POZ" EntitySet="PaskiPlacowe_POZ" />
           </AssociationSet>
           <AssociationSet Name="FK_PaskiPlacowe_POZ_1_0" Association="Self.FK_PaskiPlacowe_POZ_1_0">
-            <End Role="SL_TYPOW_POL_PP" EntitySet="SL_TYPOW_POL_PP" />
+            <End Role="PaskiPlacowe" EntitySet="PaskiPlacowe" />
             <End Role="PaskiPlacowe_POZ" EntitySet="PaskiPlacowe_POZ" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SL_TYPOW_POL_PP_0_0" Association="Self.FK_SL_TYPOW_POL_PP_0_0">
+            <End Role="SL_GRUPY_TYPOW_POL_PP" EntitySet="SL_GRUPY_TYPOW_POL_PP" />
+            <End Role="SL_TYPOW_POL_PP" EntitySet="SL_TYPOW_POL_PP" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -107,72 +132,32 @@
           <Property Name="NAZWA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ID_UZYTKOWNIKA" Type="Int64" Nullable="false" />
           <Property Name="PLIK" Type="Binary" MaxLength="2147483647" FixedLength="false" />
-          <NavigationProperty Name="PaskiPlacowe_POZ" Relationship="SalarySlipModel.FK_PaskiPlacowe_POZ_0_0" FromRole="PaskiPlacowe" ToRole="PaskiPlacowe_POZ" />
           <NavigationProperty Name="Uzytkownicy" Relationship="SalarySlipModel.FK_PaskiPlacowe_0_0" FromRole="PaskiPlacowe" ToRole="Uzytkownicy" />
-        </EntityType>
-        <EntityType Name="SL_TYPOW_POL_PP">
-          <Key>
-            <PropertyRef Name="ID_TYPU_POLA" />
-          </Key>
-          <Property Name="ID_TYPU_POLA" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="KOD" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="NAZWA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="UNIKALNY" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="PaskiPlacowe_POZ" Relationship="SalarySlipModel.FK_PaskiPlacowe_POZ_1_0" FromRole="SL_TYPOW_POL_PP" ToRole="PaskiPlacowe_POZ" />
+          <NavigationProperty Name="PaskiPlacowe_POZ" Relationship="SalarySlipModel.FK_PaskiPlacowe_POZ_1_0" FromRole="PaskiPlacowe" ToRole="PaskiPlacowe_POZ" />
         </EntityType>
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="PaskiPlacowe" EntityType="Self.PaskiPlacowe" />
-          <EntitySet Name="SL_TYPOW_POL_PP" EntityType="Self.SL_TYPOW_POL_PP" />
-          <EntitySet Name="PaskiPlacowe_POZ" EntityType="SalarySlipModel.PaskiPlacowe_POZ" />
-          <AssociationSet Name="FK_PaskiPlacowe_POZ_0_0" Association="SalarySlipModel.FK_PaskiPlacowe_POZ_0_0">
-            <End Role="PaskiPlacowe" EntitySet="PaskiPlacowe" />
-            <End Role="PaskiPlacowe_POZ" EntitySet="PaskiPlacowe_POZ" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PaskiPlacowe_POZ_1_0" Association="SalarySlipModel.FK_PaskiPlacowe_POZ_1_0">
-            <End Role="SL_TYPOW_POL_PP" EntitySet="SL_TYPOW_POL_PP" />
-            <End Role="PaskiPlacowe_POZ" EntitySet="PaskiPlacowe_POZ" />
-          </AssociationSet>
           <EntitySet Name="Uzytkownicy" EntityType="SalarySlipModel.Uzytkownicy" />
           <AssociationSet Name="FK_PaskiPlacowe_0_0" Association="SalarySlipModel.FK_PaskiPlacowe_0_0">
             <End Role="Uzytkownicy" EntitySet="Uzytkownicy" />
             <End Role="PaskiPlacowe" EntitySet="PaskiPlacowe" />
           </AssociationSet>
+          <EntitySet Name="SL_GRUPY_TYPOW_POL_PP" EntityType="SalarySlipModel.SL_GRUPY_TYPOW_POL_PP" />
+          <EntitySet Name="SL_TYPOW_POL_PP" EntityType="SalarySlipModel.SL_TYPOW_POL_PP" />
+          <AssociationSet Name="FK_SL_TYPOW_POL_PP_0_0" Association="SalarySlipModel.FK_SL_TYPOW_POL_PP_0_0">
+            <End Role="SL_GRUPY_TYPOW_POL_PP" EntitySet="SL_GRUPY_TYPOW_POL_PP" />
+            <End Role="SL_TYPOW_POL_PP" EntitySet="SL_TYPOW_POL_PP" />
+          </AssociationSet>
+          <EntitySet Name="PaskiPlacowe_POZ" EntityType="SalarySlipModel.PaskiPlacowe_POZ" />
+          <AssociationSet Name="FK_PaskiPlacowe_POZ_1_0" Association="SalarySlipModel.FK_PaskiPlacowe_POZ_1_0">
+            <End Role="PaskiPlacowe" EntitySet="PaskiPlacowe" />
+            <End Role="PaskiPlacowe_POZ" EntitySet="PaskiPlacowe_POZ" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaskiPlacowe_POZ_0_0" Association="SalarySlipModel.FK_PaskiPlacowe_POZ_0_0">
+            <End Role="SL_TYPOW_POL_PP" EntitySet="SL_TYPOW_POL_PP" />
+            <End Role="PaskiPlacowe_POZ" EntitySet="PaskiPlacowe_POZ" />
+          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="PaskiPlacowe_POZ">
-          <Key>
-            <PropertyRef Name="ID_PASEK_PLACOWY_POZ" />
-          </Key>
-          <Property Name="ID_PASEK_PLACOWY_POZ" Type="Int64" Nullable="false" />
-          <Property Name="ID_TYPU_POLA" Type="Int64" Nullable="false" />
-          <Property Name="ID_PASKA" Type="Int64" Nullable="false" />
-          <Property Name="WARTOSC" Type="String" Nullable="false" MaxLength="8000" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="PaskiPlacowe" Relationship="SalarySlipModel.FK_PaskiPlacowe_POZ_0_0" FromRole="PaskiPlacowe_POZ" ToRole="PaskiPlacowe" />
-          <NavigationProperty Name="SL_TYPOW_POL_PP" Relationship="SalarySlipModel.FK_PaskiPlacowe_POZ_1_0" FromRole="PaskiPlacowe_POZ" ToRole="SL_TYPOW_POL_PP" />
-        </EntityType>
-        <Association Name="FK_PaskiPlacowe_POZ_0_0">
-          <End Type="SalarySlipModel.PaskiPlacowe" Role="PaskiPlacowe" Multiplicity="1" />
-          <End Type="SalarySlipModel.PaskiPlacowe_POZ" Role="PaskiPlacowe_POZ" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PaskiPlacowe">
-              <PropertyRef Name="ID_PASKA" />
-            </Principal>
-            <Dependent Role="PaskiPlacowe_POZ">
-              <PropertyRef Name="ID_PASKA" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PaskiPlacowe_POZ_1_0">
-          <End Type="SalarySlipModel.SL_TYPOW_POL_PP" Role="SL_TYPOW_POL_PP" Multiplicity="1" />
-          <End Type="SalarySlipModel.PaskiPlacowe_POZ" Role="PaskiPlacowe_POZ" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SL_TYPOW_POL_PP">
-              <PropertyRef Name="ID_TYPU_POLA" />
-            </Principal>
-            <Dependent Role="PaskiPlacowe_POZ">
-              <PropertyRef Name="ID_TYPU_POLA" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Uzytkownicy">
           <Key>
             <PropertyRef Name="ID_UZYTKOWNIKA" />
@@ -195,6 +180,73 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="SL_GRUPY_TYPOW_POL_PP">
+          <Key>
+            <PropertyRef Name="ID_GRUPY" />
+          </Key>
+          <Property Name="ID_GRUPY" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazwa" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SL_TYPOW_POL_PP" Relationship="SalarySlipModel.FK_SL_TYPOW_POL_PP_0_0" FromRole="SL_GRUPY_TYPOW_POL_PP" ToRole="SL_TYPOW_POL_PP" />
+        </EntityType>
+        <EntityType Name="SL_TYPOW_POL_PP">
+          <Key>
+            <PropertyRef Name="ID_TYPU_POLA" />
+          </Key>
+          <Property Name="ID_TYPU_POLA" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KOD" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="NAZWA" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UNIKALNY" Type="Boolean" Nullable="false" />
+          <Property Name="ID_GRUPY" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="SL_GRUPY_TYPOW_POL_PP" Relationship="SalarySlipModel.FK_SL_TYPOW_POL_PP_0_0" FromRole="SL_TYPOW_POL_PP" ToRole="SL_GRUPY_TYPOW_POL_PP" />
+          <NavigationProperty Name="PaskiPlacowe_POZ" Relationship="SalarySlipModel.FK_PaskiPlacowe_POZ_0_0" FromRole="SL_TYPOW_POL_PP" ToRole="PaskiPlacowe_POZ" />
+        </EntityType>
+        <Association Name="FK_SL_TYPOW_POL_PP_0_0">
+          <End Type="SalarySlipModel.SL_GRUPY_TYPOW_POL_PP" Role="SL_GRUPY_TYPOW_POL_PP" Multiplicity="1" />
+          <End Type="SalarySlipModel.SL_TYPOW_POL_PP" Role="SL_TYPOW_POL_PP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SL_GRUPY_TYPOW_POL_PP">
+              <PropertyRef Name="ID_GRUPY" />
+            </Principal>
+            <Dependent Role="SL_TYPOW_POL_PP">
+              <PropertyRef Name="ID_GRUPY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PaskiPlacowe_POZ">
+          <Key>
+            <PropertyRef Name="ID_PASEK_PLACOWY_POZ" />
+          </Key>
+          <Property Name="ID_PASEK_PLACOWY_POZ" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_TYPU_POLA" Type="Int64" Nullable="false" />
+          <Property Name="ID_PASKA" Type="Int64" Nullable="false" />
+          <Property Name="WARTOSC" Type="String" Nullable="false" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PaskiPlacowe" Relationship="SalarySlipModel.FK_PaskiPlacowe_POZ_1_0" FromRole="PaskiPlacowe_POZ" ToRole="PaskiPlacowe" />
+          <NavigationProperty Name="SL_TYPOW_POL_PP" Relationship="SalarySlipModel.FK_PaskiPlacowe_POZ_0_0" FromRole="PaskiPlacowe_POZ" ToRole="SL_TYPOW_POL_PP" />
+        </EntityType>
+        <Association Name="FK_PaskiPlacowe_POZ_1_0">
+          <End Type="SalarySlipModel.PaskiPlacowe" Role="PaskiPlacowe" Multiplicity="1" />
+          <End Type="SalarySlipModel.PaskiPlacowe_POZ" Role="PaskiPlacowe_POZ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaskiPlacowe">
+              <PropertyRef Name="ID_PASKA" />
+            </Principal>
+            <Dependent Role="PaskiPlacowe_POZ">
+              <PropertyRef Name="ID_PASKA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaskiPlacowe_POZ_0_0">
+          <End Type="SalarySlipModel.SL_TYPOW_POL_PP" Role="SL_TYPOW_POL_PP" Multiplicity="1" />
+          <End Type="SalarySlipModel.PaskiPlacowe_POZ" Role="PaskiPlacowe_POZ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SL_TYPOW_POL_PP">
+              <PropertyRef Name="ID_TYPU_POLA" />
+            </Principal>
+            <Dependent Role="PaskiPlacowe_POZ">
+              <PropertyRef Name="ID_TYPU_POLA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -211,13 +263,32 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Uzytkownicy">
+            <EntityTypeMapping TypeName="SalarySlipModel.Uzytkownicy">
+              <MappingFragment StoreEntitySet="Uzytkownicy">
+                <ScalarProperty Name="HASLO" ColumnName="HASLO" />
+                <ScalarProperty Name="LOGIN" ColumnName="LOGIN" />
+                <ScalarProperty Name="NAZWA" ColumnName="NAZWA" />
+                <ScalarProperty Name="ID_UZYTKOWNIKA" ColumnName="ID_UZYTKOWNIKA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SL_GRUPY_TYPOW_POL_PP">
+            <EntityTypeMapping TypeName="SalarySlipModel.SL_GRUPY_TYPOW_POL_PP">
+              <MappingFragment StoreEntitySet="SL_GRUPY_TYPOW_POL_PP">
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="ID_GRUPY" ColumnName="ID_GRUPY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="SL_TYPOW_POL_PP">
             <EntityTypeMapping TypeName="SalarySlipModel.SL_TYPOW_POL_PP">
               <MappingFragment StoreEntitySet="SL_TYPOW_POL_PP">
-                <ScalarProperty Name="ID_TYPU_POLA" ColumnName="ID_TYPU_POLA" />
-                <ScalarProperty Name="KOD" ColumnName="KOD" />
-                <ScalarProperty Name="NAZWA" ColumnName="NAZWA" />
+                <ScalarProperty Name="ID_GRUPY" ColumnName="ID_GRUPY" />
                 <ScalarProperty Name="UNIKALNY" ColumnName="UNIKALNY" />
+                <ScalarProperty Name="NAZWA" ColumnName="NAZWA" />
+                <ScalarProperty Name="KOD" ColumnName="KOD" />
+                <ScalarProperty Name="ID_TYPU_POLA" ColumnName="ID_TYPU_POLA" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -228,16 +299,6 @@
                 <ScalarProperty Name="ID_PASKA" ColumnName="ID_PASKA" />
                 <ScalarProperty Name="ID_TYPU_POLA" ColumnName="ID_TYPU_POLA" />
                 <ScalarProperty Name="ID_PASEK_PLACOWY_POZ" ColumnName="ID_PASEK_PLACOWY_POZ" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Uzytkownicy">
-            <EntityTypeMapping TypeName="SalarySlipModel.Uzytkownicy">
-              <MappingFragment StoreEntitySet="Uzytkownicy">
-                <ScalarProperty Name="HASLO" ColumnName="HASLO" />
-                <ScalarProperty Name="LOGIN" ColumnName="LOGIN" />
-                <ScalarProperty Name="NAZWA" ColumnName="NAZWA" />
-                <ScalarProperty Name="ID_UZYTKOWNIKA" ColumnName="ID_UZYTKOWNIKA" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

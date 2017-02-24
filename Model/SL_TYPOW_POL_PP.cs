@@ -24,7 +24,9 @@ namespace PaskiPlacowe.Model
         public string KOD { get; set; }
         public string NAZWA { get; set; }
         public bool UNIKALNY { get; set; }
+        public long ID_GRUPY { get; set; }
     
+        public virtual SL_GRUPY_TYPOW_POL_PP SL_GRUPY_TYPOW_POL_PP { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PaskiPlacowe_POZ> PaskiPlacowe_POZ { get; set; }
     }

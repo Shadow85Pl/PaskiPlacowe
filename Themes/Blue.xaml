@@ -24,5 +24,6 @@
     <Style x:Key="H1" TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
         <Setter Property="FontSize" Value="20"/>
         <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Margin" Value="0 0 0 10"/>
     </Style>
 </ResourceDictionary>

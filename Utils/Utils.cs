@@ -6,7 +6,7 @@ using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PaskiPlacowe
+namespace PaskiPlacowe.Utils
 {
     static class Utils
     {

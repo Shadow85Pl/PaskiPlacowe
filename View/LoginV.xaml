@@ -4,12 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PaskiPlacowe.View"
-             xmlns:main ="clr-namespace:PaskiPlacowe"
+             xmlns:utils ="clr-namespace:PaskiPlacowe.Utils"
              xmlns:localization="clr-namespace:PaskiPlacowe.Localization"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel VerticalAlignment="Center" Margin="10">
-        <TextBlock Text="{x:Static main:Consts.AppNameLong}" Style="{StaticResource H1}"/>
+        <TextBlock Text="{x:Static utils:Consts.AppNameLong}" Style="{StaticResource H1}"/>
         <TextBlock Text="{Binding LoginErrMSG}"/>
         <StackPanel>
             <TextBlock Text="{x:Static localization:Strings.LABEL_LOGIN}"/>

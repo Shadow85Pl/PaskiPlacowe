@@ -90,9 +90,9 @@ namespace PaskiPlacowe.ViewModel
         {
             DB.PaskiPlacowe.Add(new PaskiPlacowe.Model.PaskiPlacowe()
             {
-                ID_UZYTKOWNIKA=LoginData.GetInstance().UserId,
-                NAZWA=SalarySlipName,
-                PLIK=File.ReadAllBytes(ChoosenFile)                
+                ID_UZYTKOWNIKA = LoginData.GetInstance().UserId,
+                NAZWA = SalarySlipName,
+                PLIK = File.ReadAllBytes(ChoosenFile)
             });
             DB.SaveChanges();
         }

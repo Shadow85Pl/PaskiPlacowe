@@ -56,7 +56,8 @@ namespace PaskiPlacowe.ViewModel
         {
             get
             {
-                return DB.PaskiPlacowe.Count();
+                long UserID=LoginData.GetInstance().UserId;
+                return DB.PaskiPlacowe.Where(a=>a.ID_UZYTKOWNIKA== UserID).Count();
             }
         }
     }

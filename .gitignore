@@ -241,3 +241,4 @@ ModelManifest.xml
 # FAKE - F# Make
 .fake/
 /SalarySlip.sql
+/SalarySlip_BASE_INSERTS.sql

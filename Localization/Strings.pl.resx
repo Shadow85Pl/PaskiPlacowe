@@ -132,6 +132,9 @@
   <data name="BTN_EDIT" xml:space="preserve">
     <value>Edytuj</value>
   </data>
+  <data name="BTN_LOGOUT" xml:space="preserve">
+    <value>Wyloguj</value>
+  </data>
   <data name="BTN_LOG_IN" xml:space="preserve">
     <value>Zaloguj</value>
   </data>

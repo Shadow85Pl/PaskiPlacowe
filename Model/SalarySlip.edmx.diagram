@@ -6,12 +6,14 @@
     <edmx:Diagrams>
       <Diagram DiagramId="17c4f333afc9430eb7e01ec0160413ad" Name="Diagram1">
         <EntityTypeShape EntityType="SalarySlipModel.PaskiPlacowe" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SalarySlipModel.SL_TYPOW_POL_PP" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SalarySlipModel.PaskiPlacowe_POZ" Width="1.5" PointX="6.25" PointY="2.5" />
-        <AssociationConnector Association="SalarySlipModel.FK_PaskiPlacowe_POZ_0_0" />
-        <AssociationConnector Association="SalarySlipModel.FK_PaskiPlacowe_POZ_1_0" />
         <EntityTypeShape EntityType="SalarySlipModel.Uzytkownicy" Width="1.5" PointX="0.75" PointY="1" />
         <AssociationConnector Association="SalarySlipModel.FK_PaskiPlacowe_0_0" />
+        <EntityTypeShape EntityType="SalarySlipModel.SL_GRUPY_TYPOW_POL_PP" Width="1.5" PointX="1.75" PointY="4.25" />
+        <EntityTypeShape EntityType="SalarySlipModel.SL_TYPOW_POL_PP" Width="1.5" PointX="4" PointY="3.875" />
+        <AssociationConnector Association="SalarySlipModel.FK_SL_TYPOW_POL_PP_0_0" />
+        <EntityTypeShape EntityType="SalarySlipModel.PaskiPlacowe_POZ" Width="1.5" PointX="5.625" PointY="1" />
+        <AssociationConnector Association="SalarySlipModel.FK_PaskiPlacowe_POZ_1_0" />
+        <AssociationConnector Association="SalarySlipModel.FK_PaskiPlacowe_POZ_0_0" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

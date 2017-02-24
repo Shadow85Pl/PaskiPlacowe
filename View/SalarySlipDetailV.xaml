@@ -27,5 +27,12 @@
                 </Style>
             </PdfViewer:PdfViewerControl.Style>
         </PdfViewer:PdfViewerControl>
+        <DataGrid Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Path=SelectedSalarySlipPoz}" AutoGenerateColumns="False" CellEditEnding="DataGrid_CellEditEnding" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Kod" Binding="{Binding Path=SPOZ.KOD}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Nazwa" Binding="{Binding Path=SPOZ.NAZWA}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Wartość" Binding="{Binding Path=POZ.WARTOSC}"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>

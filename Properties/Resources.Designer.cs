@@ -63,23 +63,39 @@ namespace PaskiPlacowe.Properties {
         /// <summary>
         ///   Looks up a localized string similar to PRAGMA foreign_keys=OFF;
         ///BEGIN TRANSACTION;
-        ///CREATE TABLE [Uzytkownicy] (        ///
-        ///    [ID_UZYTKOWNIKA] integer PRIMARY KEY AUTOINCREMENT NOT NULL,        ///
+        ///CREATE TABLE [PaskiPlacowe] (        ///
+        ///    [ID_PASKA] integer PRIMARY KEY AUTOINCREMENT NOT NULL,        ///
         ///    [NAZWA] varchar(50) NOT NULL,        ///
-        ///    [LOGIN] varchar(50) NOT NULL,        ///
-        ///    [HASLO] varbinary(64) NOT NULL        ///
+        ///    [ID_UZYTKOWNIKA] integer NOT NULL,        ///
+        ///    [PLIK] blob,        ///
+        ///    CONSTRAINT [FK_PaskiPlacowe_-1_-1] FOREIGN KEY ([ID_UZYTKOWNIKA]) REFERENCES [Uzytkownicy] ([ID_UZYTKOWNIKA])        ///
         ///);
-        ///CREATE TABLE [SL_TYPOW_POL_PP] (        ///
-        ///    [ID_TYPU_POLA] integer PRIMARY KEY AUTOINCREMENT NOT NULL,        ///
-        ///    [KOD] varchar(2) NOT NULL UNIQUE,        ///
-        ///    [NAZWA] varchar(50) NOT NULL,        ///
-        ///    [UNIKALNY] bit NOT NULL DEFAULT False        ///
-        ///);
-        ///CREATE TABLE [PaskiPlacowe] (        ///        /// [rest of string was truncated]&quot;;.
+        ///CREATE TABLE [PaskiPlacowe_POZ] (        ///
+        ///    [ID_PASEK_PLACOWY_POZ] integer PRIMARY KEY NOT NULL,        ///
+        ///    [ID_TYPU_POLA] integer NOT NULL,        ///
+        ///    [ID_PASKA] integer  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string SalarySlip {
             get {
                 return ResourceManager.GetString("SalarySlip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to begin;
+        ///insert into SL_GRUPY_TYPOW_POL_PP(NAZWA) VALUES (&apos;Dane podstawowe&apos;);
+        ///insert into SL_GRUPY_TYPOW_POL_PP(NAZWA) VALUES (&apos;Godziny&apos;);
+        ///insert into SL_GRUPY_TYPOW_POL_PP(NAZWA) VALUES (&apos;Dni&apos;);
+        ///insert into SL_GRUPY_TYPOW_POL_PP(NAZWA) VALUES (&apos;Wynag. OFP&apos;);
+        ///insert into SL_GRUPY_TYPOW_POL_PP(NAZWA) VALUES (&apos;Potrącenia&apos;);
+        ///insert into SL_GRUPY_TYPOW_POL_PP(NAZWA) VALUES (&apos;Podstawy podatkowe&apos;);
+        ///insert into SL_GRUPY_TYPOW_POL_PP(NAZWA) VALUES (&apos;Składki&apos;);
+        ///
+        ///insert into SL_TYPOW_POL_PP(KOD,NAZWA,UNIKALNY, [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string SalarySlip_BASE_INSERTS {
+            get {
+                return ResourceManager.GetString("SalarySlip_BASE_INSERTS", resourceCulture);
             }
         }
     }

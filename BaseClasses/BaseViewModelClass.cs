@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PaskiPlacowe.Utils;
 
 namespace PaskiPlacowe.BaseClasses
 {
@@ -60,6 +61,8 @@ namespace PaskiPlacowe.BaseClasses
                         using (SQLiteCommand Com = Con.CreateCommand())
                         {
                             Com.CommandText = PaskiPlacowe.Properties.Resources.SalarySlip;
+                            Com.ExecuteNonQuery();
+                            Com.CommandText = PaskiPlacowe.Properties.Resources.SalarySlip_BASE_INSERTS;
                             Com.ExecuteNonQuery();
                         }
                     }

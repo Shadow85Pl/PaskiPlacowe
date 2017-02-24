@@ -1,5 +1,6 @@
 ﻿using PaskiPlacowe.BaseClasses;
 using PaskiPlacowe.Events;
+using PaskiPlacowe.Utils;
 using Prism.Commands;
 using Prism.Events;
 using System;
@@ -85,7 +86,7 @@ namespace PaskiPlacowe.ViewModel
                     throw new Exception(Localization.Messages.MSG_USER_DONT_EXISTS);
                 using (var h = new SHA512Managed())
                 {
-                    if ((this.Password != null && !this.Password.IsNullOrWhiteSpace() && User.HASLO!=null && User.HASLO.Equals(this.Password.Process(h.ComputeHash))) ||
+                    if ((this.Password != null && !this.Password.IsNullOrWhiteSpace() && User.HASLO!=null && User.HASLO.SequenceEqual(this.Password.Process(h.ComputeHash))) ||
                         ((this.Password==null || this.Password.IsNullOrWhiteSpace()) && User.HASLO==null))
                     {
                         LogIn(User.ID_UZYTKOWNIKA);

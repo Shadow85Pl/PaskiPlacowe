@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="PaskiPlacowe.View.SalarySlipV"
+﻿<UserControl
              xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -9,6 +9,8 @@
              xmlns:prism="http://www.codeplex.com/prism"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:InteractionRequest="clr-namespace:PaskiPlacowe.InteractionRequest"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:syncfusion="http://schemas.syncfusion.com/wpf" x:Class="PaskiPlacowe.View.SalarySlipV"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <i:Interaction.Triggers>
@@ -37,6 +39,38 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+        <WrapPanel Margin="0,0,0,10" Grid.ColumnSpan="2" VerticalAlignment="Top" >
+            <Button Command="{Binding SalarySlipEAddCommand}">
+                <StackPanel>
+                    <iconPacks:PackIconModern Kind="Add" HorizontalAlignment="Center"/>
+                    <TextBlock Text="{x:Static localization:Strings.BTN_ADD}" Style="{StaticResource H1}"/>
+                </StackPanel>
+            </Button>
+            <Button Command="{Binding DeleteSalarySlip}">
+                <StackPanel>
+                    <iconPacks:PackIconModern Kind="Minus" HorizontalAlignment="Center"/>
+                    <TextBlock Text="{x:Static localization:Strings.BTN_DELETE}" Style="{StaticResource H1}"/>
+                </StackPanel>
+                <Button.Style>
+                    <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                        <Style.Triggers>
+                            <DataTrigger 
+                     Binding ="{Binding SelectedSalarySlip}" 
+                     Value="{x:Null}">
+                                <Setter Property="Button.IsEnabled" Value="false"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button Command="{Binding Logout}">
+                <StackPanel>
+                    <iconPacks:PackIconMaterial Kind="Logout" HorizontalAlignment="Center"/>
+                    <TextBlock Text="{x:Static localization:Strings.BTN_LOGOUT}" Style="{StaticResource H1}"/>
+                </StackPanel>
+            </Button>
+        </WrapPanel>
+
         <ListBox x:Name="listBox" Grid.Column="0" Grid.Row="1" MinWidth="200" ItemsSource="{Binding SalarySlipList}" SelectedItem="{Binding SelectedSalarySlip, Mode=TwoWay}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
@@ -50,9 +84,5 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <local:SalarySlipDetailV Grid.Column="1" Grid.Row="1" Margin="10 0 0 0"/>
-        <WrapPanel Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0">
-            <Button Content="{x:Static localization:Strings.BTN_ADD}" Command="{Binding SalarySlipEAddCommand}"/>
-            <Button Content="{x:Static localization:Strings.BTN_DELETE}" Command="{Binding DeleteSalarySlip}"/>
-        </WrapPanel>
     </Grid>
 </UserControl>

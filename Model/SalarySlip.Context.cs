@@ -26,8 +26,9 @@ namespace PaskiPlacowe.Model
         }
     
         public virtual DbSet<PaskiPlacowe> PaskiPlacowe { get; set; }
+        public virtual DbSet<Uzytkownicy> Uzytkownicy { get; set; }
+        public virtual DbSet<SL_GRUPY_TYPOW_POL_PP> SL_GRUPY_TYPOW_POL_PP { get; set; }
         public virtual DbSet<SL_TYPOW_POL_PP> SL_TYPOW_POL_PP { get; set; }
         public virtual DbSet<PaskiPlacowe_POZ> PaskiPlacowe_POZ { get; set; }
-        public virtual DbSet<Uzytkownicy> Uzytkownicy { get; set; }
     }
 }
